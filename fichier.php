@@ -1,16 +1,22 @@
 <?php 
 
-$file=fopen("myfile.txt","r");
+$file=fopen("maj.txt","r");
+$maj=fgets($file);
+fclose($file);
+echo "<p>Mis à jour le $maj</p>";
 
-fwrite($file,"bienvenue en picardie le 07/04/2020".PHP_EOL);
+/*$count=fopen("count.txt","r+");
+//fwrite($count,"1");
 
+fwrite($count,"1");
 
 $str="";
 while($str!==false) {
-    $str=fgets($file);
+    fseek($count, 0);
+    fwrite($count,"$str=+1");
+    $str=fgets($count);
     var_dump($str);
 }
 
-
-
-fclose($file);
+fclose($count);
+*/
