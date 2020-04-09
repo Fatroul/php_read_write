@@ -1,3 +1,23 @@
+<?php
+$file=fopen("persos.csv","r");
+
+//isset(fgetcsv($file))?var_dump(fgetcsv($file)):var_dump("il n'y a plus de persos");
+$tab_line="";
+$personnages=[];
+while($tab_line !== false) {
+    $tab_line=fgetcsv($file);
+    if($tab_line !== false) {
+        array_push($personnages,$tab_line);
+    }
+}
+fclose($file);
+//var_dump($personnages);
+$html="<p>Voici mes personnages :</p><ul>";
+foreach($personnages as $personnage) {
+    $html.="<li>$personnage[0]</li>"; 
+}
+$html.="</ul>";
+?>
 <!DOCTYPE html>
 <html lang=fr>
 <head>
@@ -7,7 +27,7 @@
 <body>
 <h1>Le formulaire</h1>
 <section>
-<form action="form.php" method="post">
+<form action="formulaire.php" method="post">
     <p>
         <label for="name">Le nom du personnage:</label>
         <input type="text" id="name" name="name">
@@ -32,6 +52,9 @@
         <input type="radio" id="dead" name="deadoralive" value="non">
     </p>
     <p><input type="submit" value="Soumettre..."></p>
+</section>
+<section>
+    <?=$html?>
 </section>
 </body>
 </html>
